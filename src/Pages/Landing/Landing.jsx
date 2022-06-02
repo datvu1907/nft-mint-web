@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Landing.css";
 import menu from "../../Assets/Menu.svg";
 import tri from "../../Assets/tri.png";
+import mintImg from "../../Assets/mint-img.png";
 import JoinBox from "../../Components/JoinBox";
 import Faq from "../Faq/Faq";
+import Web3 from "web3";
+// import web3 from "../../web3";
+import flocked from "../../flocked";
 function Landing() {
+  const [value, setValue] = useState(1);
+
+  const increment = () => {
+    if (value >= 1 && value < 10) {
+      setValue((prev) => prev + 1);
+    }
+  };
+  const decrement = () => {
+    if (value > 1 && value <= 10) {
+      setValue((prev) => prev - 1);
+    }
+  };
+  async function mintNFT() {
+    window.ethereum.request({ method: "eth_requestAccounts" });
+    const web3 = new Web3(window.ethereum)
+    const accounts = await web3.eth.getAccounts();
+    console.log(accounts[0]);
+    await flocked.methods.mint(value).send({
+      from: accounts[0],
+      value: web3.utils.toWei((0.02 * value).toString(), "ether")
+    });
+  };
   return (
     <div className="landing-cont">
       <div className="landing">
         <h1 className="main-h1">Flocked</h1>
-        
+
         <p className="main-desc">
           flocked aims to provide the most efficient and worry free way to
           participate in the chikn ecosystem. chikn presents an incredibly
@@ -101,6 +127,51 @@ function Landing() {
               </div>
             </div>
           </div>
+        </div>
+        <div id="mint-section" className="mint-section">
+          <p>2000/2,000</p>
+          <div className="mint-row">
+            <button
+              className="max-btn"
+              onClick={() => {
+                setValue(1);
+              }}
+            >
+              1
+            </button>
+            <button
+              style={
+                value === 1 ? { cursor: "not-allowed" } : { cursor: "pointer" }
+              }
+              onClick={() => {
+                decrement();
+              }}
+            >
+              -
+            </button>
+            <button className="mint-btn" onClick={mintNFT}>Mint {value} Items</button>
+            <button
+              className="max-btn"
+              onClick={() => {
+                setValue(10);
+              }}
+            >
+              10
+            </button>
+            <button
+              style={
+                value === 10 ? { cursor: "not-allowed" } : { cursor: "pointer" }
+              }
+              onClick={() => {
+                increment();
+              }}
+            >
+              +
+            </button>
+          </div>
+          <h2>
+            {value * 3000} <img src={mintImg} alt="" />
+          </h2>
         </div>
         <div className="join-row">
           <JoinBox name={"Whitepaper"} />

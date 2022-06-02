@@ -2,26 +2,20 @@ import React from "react";
 import "./Header.css";
 import menu from "../../Assets/Menu.svg";
 import windowimg from "../../Assets/Windows.svg";
-import web3 from "../../web3";
-import flocked from "../../flocked";
 function Header({ accounts, setAccounts }) {
   async function connectAccount() {
-    if (window.ethereum) { //check if Metamask is installed
-      console.log('Request Account');
-     const account = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    if (window.ethereum) {
+      //check if Metamask is installed
+      console.log("Request Account");
+      const account = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
       console.log(account);
-    }else{
-      console.log('Please install metamask');
+    } else {
+      console.log("Please install metamask");
     }
   }
-  async function mintNFT() {
-    const accounts = await web3.eth.getAccounts();
-    console.log(accounts[0]);
-    await flocked.methods.mint(1).send({
-      from: accounts[0],
-      value: web3.utils.toWei("0.02", "ether")
-    });
-  }
+
 
   return (
     <div className="head-cont">
@@ -33,9 +27,9 @@ function Header({ accounts, setAccounts }) {
         </div>
         <div className="bottom-header">
           <div className="left-bottom-header">
-            <label className="nav-links" onClick={mintNFT}>
+            <a href="#mint-section" className="nav-links">
               Mint
-            </label>
+            </a>
             <a href={"#"} className="nav-links">
               Stake
             </a>
