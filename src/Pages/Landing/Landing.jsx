@@ -28,7 +28,7 @@ function Landing() {
     console.log(accounts[0]);
     await flocked.methods.mint(value).send({
       from: accounts[0],
-      value: web3.utils.toWei((0.02 * value).toString(), "ether")
+      value: web3.utils.toWei((1 * value).toString(), "ether")
     });
   };
   return (
