@@ -2,17 +2,29 @@ import React from "react";
 import "./Header.css";
 import menu from "../../Assets/Menu.svg";
 import windowimg from "../../Assets/Windows.svg";
+import detectEthereumProvider from "@metamask/detect-provider";
 function Header({ accounts, setAccounts }) {
   async function connectAccount() {
-    if (window.ethereum) {
-      //check if Metamask is installed
-      console.log("Request Account");
-      const account = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      console.log(account);
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      // open the deeplink page
+      window.open(
+        "https://metamask.app.link/dapp/nft-mint-51h9ino6f-datvu1907.vercel.app/"
+      );
     } else {
-      console.log("Please install metamask");
+      if (window.ethereum) {
+        //check if Metamask is installed
+        console.log("Request Account");
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        console.log(account);
+      } else {
+        console.log("Please install metamask");
+      }
     }
   }
 

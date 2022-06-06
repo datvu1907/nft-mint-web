@@ -7,6 +7,7 @@ import JoinBox from "../../Components/JoinBox";
 import Faq from "../Faq/Faq";
 import Web3 from "web3";
 import flocked from "../../flocked";
+
 function Landing() {
   const [value, setValue] = useState(1);
 
