@@ -1,9 +1,9 @@
 import React from "react";
 import menu from "../Assets/Menu.svg";
 import "./Join.css";
-function JoinBox({ name }) {
+function JoinBox({ name, url }) {
   return (
-    <div className="join-box">
+    <a href={url} target={"blank"} className="join-box">
       <div className="top-box">
         <img src={menu} alt="" />
         <h2 className="main-text">{name === "Discord" ? "Join" : name}</h2>
@@ -11,7 +11,7 @@ function JoinBox({ name }) {
       <div className="main-join">
         <h2>{name === "Discord" ? "Join Our Discord" : name}</h2>
       </div>
-    </div>
+    </a>
   );
 }
 

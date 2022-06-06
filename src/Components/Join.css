@@ -1,5 +1,7 @@
 .join-box {
   border: 1px solid black;
+  cursor: pointer;
+  text-decoration: none;
 }
 .join-box h2 {
   font-size: 14px !important;

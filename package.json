@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "babel-loader": "8.1.0",
     "ether": "^0.0.9",
     "install": "^0.13.0",
     "npm": "^8.11.0",
@@ -18,8 +19,8 @@
     "react-dom": "^18.1.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^2.1.4",
-    "babel-loader": "8.1.0",
-    "web3": "^1.7.3"
+    "web3": "^1.7.3",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "start": "react-scripts start",

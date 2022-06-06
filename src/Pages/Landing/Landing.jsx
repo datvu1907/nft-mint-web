@@ -6,7 +6,6 @@ import mintImg from "../../Assets/mint-img.png";
 import JoinBox from "../../Components/JoinBox";
 import Faq from "../Faq/Faq";
 import Web3 from "web3";
-// import web3 from "../../web3";
 import flocked from "../../flocked";
 function Landing() {
   const [value, setValue] = useState(1);
@@ -23,14 +22,14 @@ function Landing() {
   };
   async function mintNFT() {
     window.ethereum.request({ method: "eth_requestAccounts" });
-    const web3 = new Web3(window.ethereum)
+    const web3 = new Web3(window.ethereum);
     const accounts = await web3.eth.getAccounts();
     console.log(accounts[0]);
     await flocked.methods.mint(value).send({
       from: accounts[0],
-      value: web3.utils.toWei((1 * value).toString(), "ether")
+      value: web3.utils.toWei((1 * value).toString(), "ether"),
     });
-  };
+  }
   return (
     <div className="landing-cont">
       <div className="landing">
@@ -149,7 +148,9 @@ function Landing() {
             >
               -
             </button>
-            <button className="mint-btn" onClick={mintNFT}>Mint {value} Items</button>
+            <button className="mint-btn" onClick={mintNFT}>
+              Mint {value} Items
+            </button>
             <button
               className="max-btn"
               onClick={() => {
@@ -174,8 +175,8 @@ function Landing() {
           </h2>
         </div>
         <div className="join-row">
-          <JoinBox name={"Whitepaper"} />
-          <JoinBox name={"Discord"} />
+          <JoinBox url={"https://docs.flocked.cc"} name={"Whitepaper"} />
+          <JoinBox url={""} name={"Discord"} />
         </div>
       </div>
     </div>

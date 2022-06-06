@@ -16,7 +16,6 @@ function Header({ accounts, setAccounts }) {
     }
   }
 
-
   return (
     <div className="head-cont">
       <div className="header">
